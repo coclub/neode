@@ -25,7 +25,7 @@ const ignore = [
     'eager',
     'hidden',
     'readonly',
-    'index',
+    'indexed',
     'unique',
     'cascade',
 ];

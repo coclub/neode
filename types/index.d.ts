@@ -1047,6 +1047,8 @@ declare namespace Neode {
      */
     relateTo(node: Node<any>, type: string, properties ?: object, force_create ?: boolean): Promise<Relationship>;
 
+    detachFrom(node: Node<any>): Promise<[Node<any>, Node<any>]>;
+
     /**
      * When converting to string, return this model's primary key
      *

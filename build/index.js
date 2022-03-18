@@ -107,7 +107,7 @@ var Neode = /*#__PURE__*/function () {
         var model = file.replace('.js', '');
         var path = directory + '/' + file;
 
-        var schema = require("" + path);
+        var schema = require("" + path)["default"];
 
         return _this2.model(model, schema);
       });

@@ -13,17 +13,17 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function UniqueConstraintCypher(label, property) {
   var mode = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'CREATE';
-  return "".concat(mode, " CONSTRAINT ON (model:").concat(label, ") ASSERT model.").concat(property, " IS UNIQUE");
+  return "".concat(mode, " CONSTRAINT IF NOT EXISTS ON (model:").concat(label, ") ASSERT model.").concat(property, " IS UNIQUE");
 }
 
 function ExistsConstraintCypher(label, property) {
   var mode = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'CREATE';
-  return "".concat(mode, " CONSTRAINT ON (model:").concat(label, ") ASSERT EXISTS(model.").concat(property, ")");
+  return "".concat(mode, " CONSTRAINT IF NOT EXISTS ON (model:").concat(label, ") ASSERT EXISTS(model.").concat(property, ")");
 }
 
 function IndexCypher(label, property) {
   var mode = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'CREATE';
-  return "".concat(mode, " INDEX ON :").concat(label, "(").concat(property, ")");
+  return "".concat(mode, " INDEX IF NOT EXISTS FOR (model:").concat(label, ") ON (model:").concat(property, ")");
 }
 
 function runAsync(session, queries, resolve, reject) {

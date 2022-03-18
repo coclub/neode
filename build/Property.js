@@ -69,7 +69,7 @@ var Property = /*#__PURE__*/function () {
   }, {
     key: "indexed",
     value: function indexed() {
-      return this._index || false;
+      return this._indexed || false;
     }
   }, {
     key: "protected",

@@ -43,7 +43,7 @@ export default class Property {
     }
 
     indexed() {
-        return this._index || false;
+        return this._indexed || false;
     }
 
     protected() {
