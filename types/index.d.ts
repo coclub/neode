@@ -258,7 +258,7 @@ declare class Neode {
    * @param  {Definition|null} definition     Force Definition
    * @return {NodeCollection}
    */
-  hydrate<T>(res: QueryResult, alias: string, definition?: Neode.Model<T>): Neode.NodeCollection;
+  hydrate<T>(res: QueryResult, alias: string, definition?: Neode.Model<T>, forcedEager?: string[]): Neode.NodeCollection;
 
   /**
    * Hydrate the first record in a result set
