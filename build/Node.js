@@ -186,7 +186,7 @@ var Node = /*#__PURE__*/function (_Entity) {
 
   }, {
     key: "toJson",
-    value: function toJson() {
+    value: function toJson(forcedEager) {
       var _this4 = this;
 
       var output = {
@@ -244,12 +244,12 @@ var Node = /*#__PURE__*/function (_Entity) {
       }); // Eager Promises
 
 
-      return Promise.all(this._model.eager().map(function (rel) {
+      return Promise.all(this._model.eager(forcedEager).map(function (rel) {
         var key = rel.name();
 
         if (_this4._eager.has(rel.name())) {
           // Call internal toJson function on either a Node or NodeCollection
-          return _this4._eager.get(rel.name()).toJson().then(function (value) {
+          return _this4._eager.get(rel.name()).toJson(forcedEager).then(function (value) {
             return {
               key: key,
               value: value

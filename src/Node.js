@@ -125,7 +125,7 @@ export default class Node extends Entity {
      *
      * @return {Promise}
      */
-    toJson() {
+    toJson(forcedEager) {
         const output = {
             _id: this.id(),
             _labels: this.labels(),
@@ -166,12 +166,12 @@ export default class Node extends Entity {
         });
 
         // Eager Promises
-        return Promise.all( this._model.eager().map((rel) => {
+        return Promise.all( this._model.eager(forcedEager).map((rel) => {
             const key = rel.name();
 
             if ( this._eager.has( rel.name() ) ) {
                 // Call internal toJson function on either a Node or NodeCollection
-                return this._eager.get( rel.name() ).toJson()
+                return this._eager.get( rel.name() ).toJson(forcedEager)
                     .then(value => {
                         return { key, value };
                     });

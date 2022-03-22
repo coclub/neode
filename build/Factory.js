@@ -101,7 +101,7 @@ var Factory = /*#__PURE__*/function () {
 
   }, {
     key: "hydrateNode",
-    value: function hydrateNode(record, definition) {
+    value: function hydrateNode(record, definition, forcedEager) {
       var _this2 = this;
 
       // Is there no better way to check this?!
@@ -136,7 +136,7 @@ var Factory = /*#__PURE__*/function () {
 
       var node = new _Node["default"](this._neode, definition, identity, labels, properties); // Add eagerly loaded props
 
-      definition.eager().forEach(function (eager) {
+      definition.eager(forcedEager).forEach(function (eager) {
         var name = eager.name();
 
         if (!record[name]) {

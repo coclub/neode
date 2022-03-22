@@ -536,8 +536,8 @@ var Neode = /*#__PURE__*/function () {
 
   }, {
     key: "hydrate",
-    value: function hydrate(res, alias, definition) {
-      return this.factory.hydrate(res, alias, definition);
+    value: function hydrate(res, alias, definition, forcedEager) {
+      return this.factory.hydrate(res, alias, definition, forcedEager);
     }
     /**
      * Hydrate the first record in a result set

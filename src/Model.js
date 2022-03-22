@@ -170,8 +170,11 @@ export default class Model extends Queryable {
      *
      * @return {Array}
      */
-    eager() {
+    eager(forcedEager) {
         return Array.from(this._relationships).map(([key, value]) => { // eslint-disable-line  no-unused-vars
+            if (forcedEager && forcedEager.includes(key)) {
+                return value;
+            }
             return value._eager ? value : null;
         }).filter(a => !!a);
     }

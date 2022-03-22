@@ -494,8 +494,8 @@ export default class Neode {
      * @param  {Definition|null} definition     Force Definition
      * @return {Collection}
      */
-    hydrate(res, alias, definition) {
-        return this.factory.hydrate(res, alias, definition);
+    hydrate(res, alias, definition, forcedEager) {
+        return this.factory.hydrate(res, alias, definition, forcedEager);
     }
 
     /**

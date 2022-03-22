@@ -269,13 +269,17 @@ var Model = /*#__PURE__*/function (_Queryable) {
 
   }, {
     key: "eager",
-    value: function eager() {
+    value: function eager(forcedEager) {
       return Array.from(this._relationships).map(function (_ref) {
         var _ref2 = _slicedToArray(_ref, 2),
             key = _ref2[0],
             value = _ref2[1];
 
         // eslint-disable-line  no-unused-vars
+        if (forcedEager && forcedEager.includes(key)) {
+          return value;
+        }
+
         return value._eager ? value : null;
       }).filter(function (a) {
         return !!a;

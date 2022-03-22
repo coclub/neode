@@ -68,7 +68,7 @@ export default class Factory {
      * @param {Model|String|null}   definition
      * @return {Node}
      */
-    hydrateNode(record, definition) {
+    hydrateNode(record, definition, forcedEager) {
         // Is there no better way to check this?!
         if ( neo4j.isInt( record.identity ) && Array.isArray( record.labels ) ) {
             record = Object.assign({}, record.properties, {
@@ -107,7 +107,7 @@ export default class Factory {
         const node = new Node(this._neode, definition, identity, labels, properties);
 
         // Add eagerly loaded props
-        definition.eager().forEach(eager => {
+        definition.eager(forcedEager).forEach(eager => {
             const name = eager.name();
 
             if ( !record[ name ] ) {
