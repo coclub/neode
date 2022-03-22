@@ -75,8 +75,8 @@ var Factory = /*#__PURE__*/function () {
       }
 
       var nodes = res.records.map(function (row) {
-        return _this.hydrateNode(row.get(alias), definition);
-      }, forcedEager);
+        return _this.hydrateNode(row.get(alias), definition, forcedEager);
+      });
       return new _Collection["default"](this._neode, nodes);
     }
     /**

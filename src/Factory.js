@@ -46,7 +46,7 @@ export default class Factory {
             return false;
         }
 
-        const nodes = res.records.map( row => this.hydrateNode(row.get(alias), definition), forcedEager );
+        const nodes = res.records.map( row => this.hydrateNode(row.get(alias), definition, forcedEager) );
 
         return new Collection(this._neode, nodes);
     }
