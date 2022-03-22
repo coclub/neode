@@ -145,12 +145,12 @@ var Factory = /*#__PURE__*/function () {
 
         switch (eager.type()) {
           case 'node':
-            node.setEager(name, _this2.hydrateNode(record[name]));
+            node.setEager(name, _this2.hydrateNode(record[name], null, forcedEager));
             break;
 
           case 'nodes':
             node.setEager(name, new _Collection["default"](_this2._neode, record[name].map(function (value) {
-              return _this2.hydrateNode(value);
+              return _this2.hydrateNode(value, null, forcedEager);
             })));
             break;
 

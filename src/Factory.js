@@ -116,11 +116,11 @@ export default class Factory {
 
             switch ( eager.type() ) {
                 case 'node':
-                    node.setEager(name, this.hydrateNode(record[ name ]) );
+                    node.setEager(name, this.hydrateNode(record[ name ], null, forcedEager) );
                     break;
 
                 case 'nodes':
-                    node.setEager( name, new Collection(this._neode, record[ name ].map(value => this.hydrateNode(value))) );
+                    node.setEager( name, new Collection(this._neode, record[ name ].map(value => this.hydrateNode(value, null, forcedEager))) );
                     break;
 
                 case 'relationship':
