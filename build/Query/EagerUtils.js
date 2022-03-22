@@ -31,7 +31,7 @@ var MAX_EAGER_DEPTH = 3;
 
 exports.MAX_EAGER_DEPTH = MAX_EAGER_DEPTH;
 
-function eagerPattern(neode, depth, alias, rel) {
+function eagerPattern(neode, depth, alias, rel, forcedEager) {
   var builder = new _Builder["default"]();
   var name = rel.name();
   var type = rel.type();
@@ -53,7 +53,7 @@ function eagerPattern(neode, depth, alias, rel) {
   switch (type) {
     case 'node':
     case 'nodes':
-      fields = eagerNode(neode, depth + 1, node_variable, target_model);
+      fields = eagerNode(neode, depth + 1, node_variable, target_model, forcedEager);
       break;
 
     case 'relationship':
@@ -80,7 +80,7 @@ function eagerPattern(neode, depth, alias, rel) {
  */
 
 
-function eagerNode(neode, depth, alias, model) {
+function eagerNode(neode, depth, alias, model, forcedEager) {
   var indent = "  ".repeat(depth * 2);
   var pattern = "\n".concat(indent, " ").concat(alias, " { "); // Properties
 
@@ -91,8 +91,8 @@ function eagerNode(neode, depth, alias, model) {
   pattern += "\n".concat(indent).concat(indent, ",").concat(EAGER_LABELS, ": labels(").concat(alias, ")"); // Eager
 
   if (model && depth <= MAX_EAGER_DEPTH) {
-    model.eager().forEach(function (rel) {
-      pattern += "\n".concat(indent).concat(indent, ",") + eagerPattern(neode, depth, alias, rel);
+    model.eager(forcedEager).forEach(function (rel) {
+      pattern += "\n".concat(indent).concat(indent, ",") + eagerPattern(neode, depth, alias, rel, forcedEager);
     });
   }
 

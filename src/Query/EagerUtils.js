@@ -15,7 +15,7 @@ export const MAX_EAGER_DEPTH = 3;
  * @param {String} alias                Alias for the starting node
  * @param {RelationshipType} rel        Type of relationship
  */
-export function eagerPattern(neode, depth, alias, rel) {
+export function eagerPattern(neode, depth, alias, rel, forcedEager) {
     const builder = new Builder();
 
     const name = rel.name();
@@ -43,7 +43,7 @@ export function eagerPattern(neode, depth, alias, rel) {
     switch ( type ) {
         case 'node':
         case 'nodes':
-            fields = eagerNode(neode, depth +1, node_variable, target_model);
+            fields = eagerNode(neode, depth +1, node_variable, target_model, forcedEager);
             break;
 
         case 'relationship':
@@ -73,7 +73,7 @@ export function eagerPattern(neode, depth, alias, rel) {
  * @param {String} alias    Alias of the node
  * @param {Model} model     Node model
  */
-export function eagerNode(neode, depth, alias, model) {
+export function eagerNode(neode, depth, alias, model, forcedEager) {
     const indent = `  `.repeat( depth * 2 );
     let pattern = `\n${indent} ${alias} { `;
 
@@ -88,8 +88,8 @@ export function eagerNode(neode, depth, alias, model) {
 
     // Eager
     if ( model && depth <= MAX_EAGER_DEPTH ) {
-        model.eager().forEach(rel => {
-            pattern += `\n${indent}${indent},` + eagerPattern(neode, depth, alias, rel);
+        model.eager(forcedEager).forEach(rel => {
+            pattern += `\n${indent}${indent},` + eagerPattern(neode, depth, alias, rel, forcedEager);
         });
     }
 
