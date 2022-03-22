@@ -67,7 +67,7 @@ var Factory = /*#__PURE__*/function () {
 
   }, {
     key: "hydrate",
-    value: function hydrate(res, alias, definition) {
+    value: function hydrate(res, alias, definition, forcedEager) {
       var _this = this;
 
       if (!res) {
@@ -76,7 +76,7 @@ var Factory = /*#__PURE__*/function () {
 
       var nodes = res.records.map(function (row) {
         return _this.hydrateNode(row.get(alias), definition);
-      });
+      }, forcedEager);
       return new _Collection["default"](this._neode, nodes);
     }
     /**

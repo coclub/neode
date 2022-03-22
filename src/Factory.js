@@ -41,12 +41,12 @@ export default class Factory {
      * @return {Collection}
      */
 
-    hydrate(res, alias, definition) {
+    hydrate(res, alias, definition, forcedEager) {
         if ( !res ) {
             return false;
         }
 
-        const nodes = res.records.map( row => this.hydrateNode(row.get(alias), definition) );
+        const nodes = res.records.map( row => this.hydrateNode(row.get(alias), definition), forcedEager );
 
         return new Collection(this._neode, nodes);
     }
