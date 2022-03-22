@@ -106,9 +106,9 @@ var Collection = /*#__PURE__*/function () {
 
   }, {
     key: "toJson",
-    value: function toJson() {
+    value: function toJson(forcedEager) {
       return Promise.all(this._values.map(function (value) {
-        return value.toJson();
+        return value.toJson(forcedEager);
       }));
     }
   }, {

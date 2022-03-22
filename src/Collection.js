@@ -81,9 +81,9 @@ export default class Collection {
      *
      * @return {Promise}
      */
-    toJson() {
+    toJson(forcedEager) {
         return Promise.all(this._values.map(value => {
-            return value.toJson();
+            return value.toJson(forcedEager);
         }));
     }
 
