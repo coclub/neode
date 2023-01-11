@@ -1,4 +1,5 @@
 import { QueryResult, Node as Neo4jNode, Relationship, Session, Transaction, Integer } from 'neo4j-driver';
+import { Dict } from 'neo4j-driver-core/types/record';
 
 declare class Neode {
   schema: Neode.Schema;
@@ -135,7 +136,7 @@ declare class Neode {
    * @param  {Object} params
    * @return {Promise}
    */
-  readCypher(query: string, params: object): Promise<QueryResult>;
+  readCypher(query: string, params: object): Promise<QueryResult<Dict>>;
 
   /**
    * Run an explicitly defined Write query
@@ -144,7 +145,7 @@ declare class Neode {
    * @param  {Object} params
    * @return {Promise}
    */
-  writeCypher(query: string, params: object): Promise<QueryResult>;
+  writeCypher(query: string, params: object): Promise<QueryResult<Dict>>;
 
   /**
    * Run a Cypher query
